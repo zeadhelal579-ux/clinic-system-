@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f8f6">
+  <meta name="description" content="جرّب حجز المواعيد ومتابعة الزيارات في بوابة العيادة.">
+  <title>بوابة العيادة | تجربة المريض</title>
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script type="module" src="./assets/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">انتقل للمحتوى</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#start"><img src="./assets/mark.svg" alt="" width="42" height="42"> بوابة العيادة</a>
+    <nav class="site-nav" aria-label="التنقل الرئيسي">
+      <a href="#features" data-landing-only>خدمات البوابة</a>
+      <a class="button button-outline" href="#home" data-landing-only>ادخل كمريض</a>
+      <a class="button button-outline" href="#start" data-portal-only hidden>خروج من الديمو</a>
+    </nav>
+  </header>
+  <main id="main" class="wrap">
+    <div id="landing">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="dot"></span> نسخة عرض تفاعلية</span>
+          <h1 id="hero-title" tabindex="-1">مواعيدك وزياراتك<br> <em>في مكان واحد.</em></h1>
+          <p>احجز موعدك، تابع الزيارات اللي فاتت، وراجع بياناتك من بوابة واحدة.</p>
+          <a class="button button-primary" href="#home">جرّب حساب المريض <span aria-hidden="true">←</span></a>
+          <small>دخول بضغطة واحدة بحساب تجريبي جاهز.</small>
+        </div>
+        <figure class="hero-photo">
+          <img src="./assets/doctor.webp" width="1400" height="933" fetchpriority="high" alt="طبيب في عيادة استقبال حديثة">
+          <figcaption><span class="dot"></span><div><strong>عيادة الديمو</strong><br><small>الحجز ومتابعة الزيارات</small></div></figcaption>
+        </figure>
+      </section>
+      <section class="services" id="features" aria-labelledby="features-title">
+        <div class="section-heading"><h2 id="features-title">خدمات بوابة المريض</h2><span>تقدر تجرّب كل خدمة من نفس الحساب</span></div>
+        <div class="tiles">
+          <a class="tile" href="#book"><span class="tile-icon" aria-hidden="true">↗</span><h3>حجز موعد</h3><p>اختار يوم وميعاد، وعدّل حجزك من حسابك.</p></a>
+          <a class="tile" href="#visits"><span class="tile-icon" aria-hidden="true">≡</span><h3>سجل الزيارات</h3><p>اطّلع على زيارات سابقة وملخص المتابعة.</p></a>
+          <a class="tile" href="#profile"><span class="tile-icon" aria-hidden="true">⊙</span><h3>بياناتي</h3><p>راجع بيانات الحساب التجريبي وتنبيهات الملف.</p></a>
+        </div>
+      </section>
+    </div>
+    <section id="portal" hidden aria-labelledby="portal-title">
+      <div class="portal-intro">
+        <div><span class="eyebrow"><span class="dot"></span> حساب مريض تجريبي</span><h1 id="portal-title" tabindex="-1">أهلًا يا سلمى</h1><p>هنا مواعيدك وزياراتك وبيانات ملفك.</p></div>
+        <div class="avatar" aria-hidden="true">س</div>
+      </div>
+      <div class="portal-layout">
+        <nav class="portal-nav" aria-label="بوابة المريض">
+          <a href="#home">نظرة عامة</a><a href="#book">حجز موعد</a><a href="#visits">سجل الزيارات</a><a href="#profile">بياناتي</a>
+        </nav>
+        <div class="portal-content">
+          <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+          <div data-panel="home">
+            <section class="panel appointment-panel"><div><span class="eyebrow">موعدك القادم</span><h2 id="appointment-title"></h2><p id="appointment-details"></p><div class="actions" id="appointment-actions"><button type="button" id="reschedule" class="button button-outline">تعديل الموعد</button><button type="button" id="cancel" class="button button-text">إلغاء الموعد</button></div><a class="button button-primary" id="new-appointment" href="#book" hidden>احجز موعد</a></div><img src="./assets/clinic.webp" width="1400" height="788" alt="غرفة الكشف في العيادة التجريبية" loading="lazy"></section>
+            <div class="tiles small-tiles"><a class="tile" href="#visits"><h2>آخر زيارة</h2><p id="latest-visit"></p></a><a class="tile" href="#profile"><h2>بيانات الملف</h2><p>البيانات الأساسية والتنبيهات المسجلة</p></a></div>
+          </div>
+          <div data-panel="book" hidden>
+            <section class="panel"><h2 id="booking-title" tabindex="-1">حجز موعد</h2><p id="booking-context"></p>
+              <form id="booking-form">
+                <div class="form-grid">
+                  <label>نوع الزيارة<select name="type" id="visit-type" required><option value="checkup">كشف</option><option value="followup">متابعة</option></select></label>
+                  <label>اليوم<select name="date" id="visit-date" required></select></label>
+                  <label>الميعاد<select name="time" id="visit-time" required></select></label>
+                </div>
+                <button class="button button-primary" type="submit" id="confirm-booking">تأكيد الحجز</button>
+              </form>
+            </section>
+          </div>
+          <div data-panel="visits" hidden><section class="panel"><h2 tabindex="-1">سجل الزيارات</h2><p>زيارتان سابقتان في الملف التجريبي</p><div id="visit-history" class="history"></div></section></div>
+          <div data-panel="profile" hidden><section class="panel"><h2 tabindex="-1">بياناتي</h2><div class="profile-row"><div class="avatar" aria-hidden="true">س</div><div><strong>سلمى حسن</strong><p>حساب مريض تجريبي</p></div></div><dl class="profile-data"><div><dt>رقم الملف</dt><dd><bdi>DEMO-014</bdi></dd></div><div><dt>العمر</dt><dd>٢٩ سنة</dd></div><div><dt>وسيلة التواصل</dt><dd>غير مفعّلة في الديمو</dd></div><div><dt>تنبيهات الملف</dt><dd>لا توجد تنبيهات مسجّلة</dd></div></dl><button type="button" class="button button-outline" id="reset">استعادة بيانات الديمو</button></section></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap site-footer"><strong>بوابة العيادة</strong><small>جميع الأسماء والمواعيد والسجلات في العرض افتراضية.</small></footer>
+  <dialog id="cancel-dialog" aria-labelledby="cancel-title">
+    <form method="dialog"><h2 id="cancel-title">تلغي الموعد؟</h2><p>تقدر تحجز موعد جديد بعد الإلغاء.</p><div class="actions"><button type="submit" value="keep" class="button button-outline" autofocus>احتفظ بالموعد</button><button type="submit" value="cancel" class="button button-danger">إلغاء الموعد</button></div></form>
+  </dialog>
+  <noscript><p class="wrap">فعّل JavaScript لتجربة حجز المواعيد.</p></noscript>
+</body>
+</html>
+

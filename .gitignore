@@ -1,0 +1,8 @@
+# Vercel and local-only settings
+.vercel/
+.env*
+node_modules/
+dist/
+test-results/
+.DS_Store
+Thumbs.db
