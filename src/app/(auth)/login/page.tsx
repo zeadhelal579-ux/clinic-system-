@@ -1,0 +1,9 @@
+// Render the shared sign-in and patient password recovery entry point.
+import type { Metadata } from "next";
+import { LoginForm } from "@/features/auth/LoginForm";
+
+export const metadata: Metadata = { title: "تسجيل الدخول" };
+
+export default function LoginPage() {
+  return <LoginForm />;
+}
