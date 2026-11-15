@@ -115,3 +115,78 @@
   }
 }
 
+/* Extend the patient styles with desktop workspaces and mobile-friendly staff workflows. */
+@layer components {
+  .staff-layout { display: grid; grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr); gap: 1.35rem; align-items: start; }
+  .staff-sidebar { display: grid; gap: .8rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+  .staff-sidebar .portal-nav { border: 0; padding: 0; }
+  .staff-sidebar .portal-nav a { justify-content: space-between; gap: .4rem; }
+  .staff-identity, .person-summary { display: flex; gap: .75rem; align-items: center; }
+  .staff-identity small { display: block; }
+  .role-links { display: grid; gap: .25rem; border-block-start: 1px solid var(--border); padding-block-start: .5rem; }
+  .role-links a { color: var(--accent); padding: .4rem; min-height: 2.75rem; }
+  .role-links a:hover { text-decoration: underline; }
+  .nav-count, .status-tag { border-radius: 2rem; padding: .15rem .55rem; font-weight: 700; color: var(--accent); background: var(--mint); white-space: nowrap; }
+  .status-tag { display: inline-block; font-size: .85rem; }
+  .status-booked { background: #f4ebcf; color: #684b0c; }
+  .status-arrived { background: #d8eadf; }
+  .status-cancelled { background: #f7e4e5; color: var(--danger); }
+  .status-done { background: #e5ecef; color: #344b5a; }
+  .staff-heading, .next-patient { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .staff-heading { border-block-end: 1px solid var(--border); padding-block-end: .65rem; }
+  .staff-heading h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+  .staff-heading time { color: var(--muted); }
+  .staff-content { display: grid; grid-template-columns: minmax(0, 1fr); gap: .95rem; min-width: 0; }
+  .staff-content .feedback:not(:empty) { margin: 0; }
+  .staff-content .feedback:empty { display: none; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+  .stat { display: grid; gap: .25rem; padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); color: var(--muted); }
+  .stat strong { font-size: clamp(1.25rem, 3vw, 1.85rem); color: var(--ink); line-height: 1.35; }
+  .next-patient { background: var(--mint); }
+  .next-patient p, .person-summary p { margin: .25rem 0 0; }
+  .table-scroll { min-width: 0; max-width: 100%; overflow: auto; margin-block-start: .65rem; }
+  table { width: 100%; border-collapse: collapse; text-align: start; }
+  th, td { padding: .68rem .62rem; border-block-end: 1px solid var(--border); text-align: start; }
+  th { background: var(--canvas); color: var(--muted); font-size: .87rem; white-space: nowrap; }
+  td { min-width: 5rem; }
+  tr:has(.status-arrived) td { background: #f0f8f1; }
+  .row-actions { display: flex; gap: .35rem; }
+  .row-actions .button { white-space: nowrap; }
+  .blank { color: var(--muted); padding-block: .5rem; }
+  .staff-stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; justify-items: start; }
+  .staff-stack > :where(form, details, .table-scroll, .medical-alert, .section-heading), .staff-stack > [data-results] { width: 100%; }
+  .visit-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: .8rem; align-items: start; }
+  .visit-grid form { margin-block-start: .8rem; }
+  .medical-alert { display: grid; gap: .15rem; padding: .7rem 1rem; background: #faeee9; color: #73372a; border-radius: .75rem; }
+  .medical-alert p { color: inherit; margin: 0; }
+  .record-entry { border: 1px solid var(--border); padding: .65rem .8rem; margin-block-start: .55rem; border-radius: .75rem; }
+  summary { cursor: pointer; font-weight: 700; }
+  .record-fields { display: grid; gap: .5rem; padding-block: .6rem .2rem; }
+  .record-fields dt { color: var(--muted); font-size: .9rem; }
+  .record-fields dd { white-space: pre-wrap; overflow-wrap: anywhere; }
+  label { display: grid; gap: .25rem; font-weight: 700; }
+  input:not([type="checkbox"]), textarea { width: 100%; padding: .55rem .7rem; min-height: 2.8rem; border: 1px solid var(--border); border-radius: .55rem; background: var(--canvas); color: var(--ink); font: inherit; }
+  textarea { resize: vertical; min-height: 5.5rem; }
+  .search-label { max-width: 32rem; }
+  fieldset { width: 100%; min-width: 0; border: 1px solid var(--border); border-radius: .75rem; margin: 0; padding: .6rem; }
+  .med-row, .hours-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; gap: .55rem; align-items: end; padding-block: .3rem; }
+  .med-row { grid-template-columns: 1.25fr 1fr 1fr auto; }
+  .check-label { display: flex; align-items: center; align-self: center; gap: .4rem; }
+  #profile-form { margin-block-end: .8rem; }
+}
+@layer responsive {
+  @media (max-width: 820px) {
+    .staff-layout, .visit-grid { grid-template-columns: minmax(0, 1fr); }
+    .staff-sidebar .portal-nav { display: flex; flex-wrap: wrap; }
+    .staff-sidebar .portal-nav a { flex: 1 1 8rem; }
+    .role-links { display: flex; gap: .6rem; }
+  }
+  @media (max-width: 520px) {
+    .staff-layout { gap: .8rem; }
+    .stats { gap: .35rem; }
+    .stat { padding: .55rem; }
+    .stat span, .stat small { font-size: .82rem; }
+    .stat strong { overflow-wrap: anywhere; }
+    .med-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+}
