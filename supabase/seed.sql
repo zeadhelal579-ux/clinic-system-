@@ -1,0 +1,2 @@
+-- Base singleton settings and seven weekdays are created by the schema migration.
+-- Patient records and staff accounts are provided separately by the caller or test fixtures.

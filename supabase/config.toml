@@ -1,0 +1,36 @@
+# Local Supabase environment for synthetic fixtures and fixed OTP codes.
+project_id = "clinic-backend"
+
+[api]
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 17
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[auth]
+site_url = "http://localhost:3000"
+enable_signup = true
+jwt_expiry = 3600
+minimum_password_length = 8
+
+[auth.email]
+enable_signup = false
+
+[auth.sms]
+enable_signup = true
+enable_confirmations = true
+max_frequency = "60s"
+
+[auth.sms.test_otp]
+"201000000001" = "123456"
+"201000000002" = "234567"
+"201000000003" = "345678"
+"201000000005" = "456789"
